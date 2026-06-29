@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const options = { day: '2-digit', month: 'short', year: 'numeric' };
         const appliedOn = now.toLocaleDateString('en-GB', options).replace(/ /g, ' '); 
 
-        const studentName = "MANVESH SINGH(23BCS1234)";
+        const studentName = "MANVESH SINGH(24BCS10752)";
 
         const newRow = document.createElement('tr');
         
