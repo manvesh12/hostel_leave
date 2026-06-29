@@ -478,6 +478,97 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #a8a8a8; 
         }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 10px;
+            }
+            .header-left {
+                width: auto;
+                gap: 5px;
+            }
+            .logo-cu, .logo-ims {
+                font-size: 20px;
+            }
+            .header-center {
+                display: none; /* Hide search bar on small mobile screens */
+            }
+            .header-right {
+                gap: 10px;
+            }
+            .user-profile {
+                padding-left: 5px;
+                border: none;
+            }
+            .user-info { display: none; } /* Hide name on mobile, keep avatar */
+            
+            .sidebar {
+                position: fixed;
+                left: -250px;
+                height: calc(100vh - 55px);
+                z-index: 999;
+                transition: 0.3s ease;
+                box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            }
+            .sidebar.active {
+                left: 0;
+            }
+
+            .main-content {
+                padding: 15px 10px;
+            }
+
+            .cards-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 100%;
+            }
+
+            .form-grid {
+                padding: 0 15px;
+            }
+            .form-row, .form-row:not(.single-col) .form-group {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .form-row:not(.single-col) .form-group label, .form-group label {
+                width: 100%;
+                text-align: left;
+                padding-right: 0;
+            }
+            .form-row:not(.single-col) .form-group input, 
+            .form-group input, .form-group select {
+                width: 100%;
+            }
+            .single-col .form-group {
+                width: 100%;
+            }
+            .checkbox-row {
+                padding: 15px;
+            }
+
+            .table-section {
+                padding: 0;
+                overflow-x: auto;
+            }
+            .custom-table {
+                min-width: 650px; /* Allow swiping horizontally */
+            }
+            .footer {
+                font-size: 8px;
+                padding-bottom: 10px;
+            }
+            .footer-red {
+                position: static;
+                display: block;
+                margin-top: 5px;
+            }
+        }
     </style>
 </head>
 <body>

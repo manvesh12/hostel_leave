@@ -32,4 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         leaveTableBody.insertBefore(newRow, leaveTableBody.firstChild);
         leaveForm.reset();
     });
+
+    // Mobile sidebar toggle
+    const menuBtn = document.querySelector('.menu-btn');
+    const sidebar = document.querySelector('.sidebar');
+    if(menuBtn && sidebar) {
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    }
 });
