@@ -1,52 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const leaveForm = document.getElementById('leaveForm');
-    const leaveHistoryList = document.getElementById('leaveHistoryList');
-    const emptyState = document.getElementById('emptyState');
-    const template = document.getElementById('historyCardTemplate');
-
-    // Default dates (optional UX improvement: set default outDate to today)
-    const now = new Date();
-    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-    document.getElementById('outDate').value = now.toISOString().slice(0,16);
+    const leaveForm = document.getElementById('cuimsLeaveForm');
+    const leaveTableBody = document.getElementById('leaveTableBody');
 
     leaveForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // 1. Get form values
         const leaveType = document.getElementById('leaveType').value;
-        const outDateRaw = document.getElementById('outDate').value;
-        const inDateRaw = document.getElementById('inDate').value;
-        const destination = document.getElementById('destination').value;
-
-        // 2. Format Dates
-        const formatOptions = { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-        const outDateFormatted = new Date(outDateRaw).toLocaleDateString('en-US', formatOptions);
-        const inDateFormatted = new Date(inDateRaw).toLocaleDateString('en-US', formatOptions);
-
-        // 3. Clone Template
-        const clone = template.content.cloneNode(true);
+        const purpose = document.getElementById('purpose').value;
         
-        // 4. Populate Data
-        clone.querySelector('.leave-type-badge').textContent = leaveType;
-        clone.querySelector('.out-time').textContent = outDateFormatted;
-        clone.querySelector('.in-time').textContent = inDateFormatted;
-        clone.querySelector('.dest-text').textContent = destination;
+        // Generate current date for 'Applied on' column
+        const now = new Date();
+        const options = { day: '2-digit', month: 'short', year: 'numeric' };
+        const appliedOn = now.toLocaleDateString('en-GB', options).replace(/ /g, ' '); 
+        // Example output: 30 Jun 2026
+
+        // Hardcoded Name mimicking the screenshot
+        const studentName = "MANVESH SHARMA(23BCS1234)";
+
+        // Create new row
+        const newRow = document.createElement('tr');
         
-        // Note: The remarks text "Approved by Warden. Checkout done. Check-in pending." 
-        // is already hardcoded in the HTML template as requested.
+        newRow.innerHTML = `
+            <td>${appliedOn}</td>
+            <td>${studentName}</td>
+            <td>${leaveType}</td>
+            <td>${purpose}</td>
+            <td class="text-blue">approved by warden checlout done check in peding</td>
+            <td></td>
+        `;
 
-        // 5. Hide Empty State
-        if (emptyState) {
-            emptyState.style.display = 'none';
-        }
+        // Prepend to show at the top of the table
+        leaveTableBody.insertBefore(newRow, leaveTableBody.firstChild);
 
-        // 6. Add to DOM (Prepend to show latest first)
-        leaveHistoryList.insertBefore(clone, leaveHistoryList.firstChild);
-
-        // 7. Reset Form
+        // Reset form
         leaveForm.reset();
-        
-        // Reset default out date to now
-        document.getElementById('outDate').value = now.toISOString().slice(0,16);
     });
 });
