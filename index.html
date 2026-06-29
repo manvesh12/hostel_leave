@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CU IMS - Hostel Leave</title>
+    <title>CU IMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Top Header -->
     <header class="top-header">
         <div class="logo-area">
-            <img src="https://cuchd.blackboard.com/branding/_1_1/loginLogo/customLoginLogo.png?v=1623910398031" alt="CUIMS Logo" style="height: 35px; margin-right: 10px; display: none;"> <!-- Hidden true logo, using text fallback -->
+            <span class="logo-circle"><i class="fas fa-bars"></i></span>
             <div class="logo-text">
                 <span class="cu">CU</span><span class="ims">IMS</span>
             </div>
@@ -27,9 +26,11 @@
         <div class="header-icons">
             <i class="far fa-bell"></i>
             <i class="fas fa-home"></i>
-            <i class="far fa-user-circle"></i>
+            <i class="far fa-envelope"></i>
             <div class="user-profile">
-                <span style="font-size: 10px; font-weight: bold;">MANVESH</span>
+                <div class="user-info">
+                    <span class="user-name">MANVESH</span>
+                </div>
                 <img src="https://ui-avatars.com/api/?name=Manvesh&background=random&color=fff&size=32" alt="Profile">
             </div>
         </div>
@@ -69,31 +70,38 @@
 
         <!-- Main Content -->
         <main class="content-area">
-            <!-- Top Action Cards -->
+            <!-- Action Cards -->
             <div class="action-cards">
                 <div class="card">
-                    <div>
+                    <div class="card-info">
                         <div class="card-title">Important Links</div>
                         <a href="#" class="card-link">CLICK HERE</a>
                     </div>
-                    <i class="fas fa-external-link-alt card-icon text-blue"></i>
+                    <i class="far fa-file-alt card-icon text-blue"></i>
                 </div>
                 <div class="card">
-                    <div>
+                    <div class="card-info">
                         <div class="card-title">Student Facilitation</div>
                         <a href="#" class="card-link">CLICK HERE</a>
                     </div>
-                    <i class="fas fa-play-circle card-icon text-purple"></i>
+                    <i class="far fa-play-circle card-icon text-purple"></i>
                 </div>
-                <div class="card bg-blue text-white">
-                    <div>
+                <div class="card">
+                    <div class="card-info">
+                        <div class="card-title">Anti Ragging</div>
+                        <a href="#" class="card-link">READ PDF</a>
+                    </div>
+                    <i class="far fa-times-circle card-icon text-blue"></i>
+                </div>
+                <div class="card bg-dark-blue">
+                    <div class="card-info">
                         <div class="card-title text-white">CU LMS</div>
                         <a href="#" class="card-link text-white">CLICK HERE</a>
                     </div>
-                    <i class="fas fa-graduation-cap card-icon"></i>
+                    <i class="fas fa-graduation-cap card-icon text-white"></i>
                 </div>
                 <div class="card">
-                    <div>
+                    <div class="card-info">
                         <div class="card-title">My University Email</div>
                         <a href="#" class="card-link">VIEW DETAILS</a>
                     </div>
@@ -101,13 +109,13 @@
                 </div>
             </div>
 
-            <!-- Leave Form Section -->
+            <!-- Form Container -->
             <div class="form-container">
                 <div class="form-header">Hostel Leave Apply</div>
-                <p class="red-note">*Note: Once Leave is REJECTED, You Can Reapply The Next Day.</p>
+                <div class="note-text">*Note: Once Leave Is REJECTED, You Can Reapply The Next Day.</div>
                 
                 <form id="cuimsLeaveForm">
-                    <div class="form-grid">
+                    <div class="form-row single-col">
                         <div class="form-group">
                             <label>Type of Leave :</label>
                             <select id="leaveType" required>
@@ -117,8 +125,9 @@
                                 <option value="Home Leave">Home Leave</option>
                             </select>
                         </div>
-                        <div class="form-group empty"></div>
+                    </div>
 
+                    <div class="form-row">
                         <div class="form-group">
                             <label>From Date For Leave :</label>
                             <input type="date" id="fromDate" required>
@@ -127,7 +136,9 @@
                             <label>To Date For Leave :</label>
                             <input type="date" id="toDate" required>
                         </div>
+                    </div>
 
+                    <div class="form-row">
                         <div class="form-group">
                             <label>Time From (06:00 AM/PM to 11:00 AM/PM) :</label>
                             <input type="time" id="fromTime" required>
@@ -136,10 +147,12 @@
                             <label>Time To (06:00 AM/PM to 11:00 AM/PM) :</label>
                             <input type="time" id="toTime" required>
                         </div>
+                    </div>
 
+                    <div class="form-row">
                         <div class="form-group">
                             <label>Totals No. of Days :</label>
-                            <input type="number" id="totalDays" value="1" min="1" required>
+                            <input type="number" id="totalDays" placeholder="--" min="1" required>
                         </div>
                         <div class="form-group">
                             <label>Purpose of Leave :</label>
@@ -147,59 +160,86 @@
                         </div>
                     </div>
 
-                    <div class="checkbox-group">
+                    <div class="checkbox-container">
                         <input type="checkbox" id="confirm" required>
                         <label for="confirm">I confirm that I have informed my parents about my night outing out leave, and I acknowledge that I am fully responsible for myself during this time.</label>
                     </div>
 
-                    <div class="button-group">
-                        <button type="submit" class="btn-submit">SUBMIT</button>
-                        <button type="button" class="btn-cancel">CANCEL</button>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn btn-red">SUBMIT</button>
+                        <button type="button" class="btn btn-red">CANCEL</button>
                     </div>
                 </form>
-            </div>
 
-            <!-- Previous Leave Table -->
-            <div class="table-container">
-                <h3 class="table-title">Previous Leave</h3>
-                <table class="leave-table">
-                    <thead>
-                        <tr>
-                            <th>Applied on</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Purpose</th>
-                            <th>Remarks</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaveTableBody">
-                        <!-- Sample past data mimicking the screenshot -->
-                        <tr>
-                            <td>24 Jun 2026</td>
-                            <td>MANVESH SHARMA(23BCS1234)</td>
-                            <td>Day Out</td>
-                            <td>internship hour</td>
-                            <td class="text-blue">Approved</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>14 Jun 2026</td>
-                            <td>MANVESH SHARMA(23BCS1234)</td>
-                            <td>Night Out Leave</td>
-                            <td>Visiting Home</td>
-                            <td class="text-blue">Approved</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <!-- Previous Leave Section -->
+                <div class="previous-leave-section">
+                    <h2 class="section-title">Previous Leave</h2>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Applied on</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>Purpose</th>
+                                <th>Remarks</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaveTableBody">
+                            <tr>
+                                <td>24 Jun 2026</td>
+                                <td>MANVESH SHARMA(23BCS1234)</td>
+                                <td>Day Out</td>
+                                <td>internship hour</td>
+                                <td class="status-approved">Approved</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>14 Jun 2026</td>
+                                <td>MANVESH SHARMA(23BCS1234)</td>
+                                <td>Night Out Leave</td>
+                                <td>Visiting Home</td>
+                                <td class="status-approved">Approved</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>12 May 2026</td>
+                                <td>MANVESH SHARMA(23BCS1234)</td>
+                                <td>Day Out</td>
+                                <td>-H/M/</td>
+                                <td class="status-approved">Approved</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>20 Mar 2026</td>
+                                <td>MANVESH SHARMA(23BCS1234)</td>
+                                <td>Day Out</td>
+                                <td>doctor</td>
+                                <td class="status-approved">Approved</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>21 Mar 2026</td>
+                                <td>MANVESH SHARMA(23BCS1234)</td>
+                                <td>Day Out</td>
+                                <td>Visiting Chandigarh</td>
+                                <td class="status-approved">Approved</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- Footer mimic -->
-    <footer class="footer">
-        Chandigarh University, Gharuan, Mohali (Punjab) | Helpline: 1800 257 1800 | Email: cu.ims.care@cumail.in
+    <!-- Floating Help Button -->
+    <div class="help-btn">
+        <i class="fas fa-question"></i>
+    </div>
+
+    <footer class="main-footer">
+        Chandigarh University, Gharuan, Mohali (Punjab) | <i class="fas fa-phone-alt"></i> Helpline: 1800 257 1800 | <i class="fas fa-envelope"></i> Email: cu.ims.care@cumail.in
     </footer>
 
     <script src="script.js"></script>
