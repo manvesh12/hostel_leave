@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hostel Leave Portal</title>
+    <meta name="description" content="Apply for hostel leave and track your leave status.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">CU<span>Hostel</span></div>
+            <nav class="nav-links">
+                <a href="#" class="active">Leave Application</a>
+                <a href="#">Profile</a>
+                <a href="#">Settings</a>
+            </nav>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=Student+User&background=6366f1&color=fff" alt="User Profile">
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-grid">
+            
+            <!-- Left Side: Leave Form -->
+            <section class="form-section glass-panel">
+                <div class="section-header">
+                    <h2>Apply for Leave</h2>
+                    <p>Fill out the details below to request a new hostel leave.</p>
+                </div>
+                
+                <form id="leaveForm" class="leave-form">
+                    <div class="form-group">
+                        <label for="leaveType">Leave Type</label>
+                        <select id="leaveType" name="leaveType" required>
+                            <option value="" disabled selected>Select Leave Type</option>
+                            <option value="Home Leave">Home Leave</option>
+                            <option value="Local Outing">Local Outing</option>
+                            <option value="Medical Leave">Medical Leave</option>
+                            <option value="Emergency">Emergency</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="outDate">Out Date & Time</label>
+                            <input type="datetime-local" id="outDate" name="outDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inDate">In Date & Time</label>
+                            <input type="datetime-local" id="inDate" name="inDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="destination">Destination Address</label>
+                        <input type="text" id="destination" name="destination" placeholder="Enter city or full address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Guardian Contact Number</label>
+                        <input type="tel" id="contact" name="contact" placeholder="+91 00000 00000" pattern="[+0-9\s]{10,14}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reason">Reason for Leave</label>
+                        <textarea id="reason" name="reason" rows="3" placeholder="Briefly explain your reason..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Submit Leave Application</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Right Side: Leave History -->
+            <section class="history-section">
+                <div class="section-header">
+                    <h2>Recent Applications</h2>
+                    <p>Track your leave status and remarks here.</p>
+                </div>
+
+                <div id="leaveHistoryList" class="history-list">
+                    <!-- History cards will be appended here dynamically -->
+                    
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">📝</div>
+                        <p>No recent leave applications.</p>
+                        <span>Submit the form to see your leave history here.</span>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- Template for History Card (Hidden) -->
+    <template id="historyCardTemplate">
+        <div class="history-card glass-panel new-entry">
+            <div class="card-header">
+                <div class="card-title">
+                    <span class="leave-type-badge"></span>
+                    <span class="status-badge status-approved">Approved</span>
+                </div>
+                <div class="card-date">Applied just now</div>
+            </div>
+            
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="dot out-dot"></div>
+                        <div class="timeline-content">
+                            <span class="label">Out</span>
+                            <span class="value out-time"></span>
+                        </div>
+                    </div>
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item">
+                        <div class="dot in-dot"></div>
+                        <div class="timeline-content">
+                            <span class="label">Expected In</span>
+                            <span class="value in-time"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="destination-info">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <span class="dest-text"></span>
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <div class="remarks-box">
+                    <div class="remarks-label">Remarks by Warden:</div>
+                    <div class="remarks-text">Approved by Warden. Checkout done. Check-in pending.</div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
