@@ -16,17 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const newRow = document.createElement('tr');
         
+        // Exact styling for the custom remark
         newRow.innerHTML = `
             <td>${appliedOn}</td>
             <td>${studentName}</td>
             <td>${leaveType}</td>
             <td>${purpose}</td>
-            <td class="status-approved">Approved<br><span style="color: #666; font-size: 9px; font-weight: 400;">Checkout done, Check in pending</span></td>
+            <td>
+                <span class="status-text">Approved</span>
+                <span class="status-sub">Checkout done, Check in pending</span>
+            </td>
             <td></td>
         `;
 
         leaveTableBody.insertBefore(newRow, leaveTableBody.firstChild);
-
         leaveForm.reset();
     });
 });
