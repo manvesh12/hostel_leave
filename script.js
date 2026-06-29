@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const options = { day: '2-digit', month: 'short', year: 'numeric' };
         const appliedOn = now.toLocaleDateString('en-GB', options).replace(/ /g, ' '); 
 
-        const studentName = "MANVESH SHARMA(23BCS1234)";
+        const studentName = "MANVESH SINGH(23BCS1234)";
 
         const newRow = document.createElement('tr');
         
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${purpose}</td>
             <td>
                 <span class="status-text">Approved</span>
-                <span class="status-sub">Checkout done, Check in pending</span>
+                <span class="status-sub" style="color: #d9241b; font-weight: 500;">Checkout done, Check in pending</span>
             </td>
             <td></td>
         `;
