@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td>${studentName}</td>
             <td>${leaveType}</td>
             <td>${purpose}</td>
-            <td class="text-blue">approved by warden checlout done check in peding</td>
+            <td class="text-blue" style="font-weight: 500;">Approved<br><span style="color: #666; font-size: 10px; font-weight: normal;">Checkout done, Check in pending</span></td>
             <td></td>
         `;
 
